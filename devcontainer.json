@@ -1,0 +1,14 @@
+{
+  "name": "My Dev Container",
+  "image": "mcr.microsoft.com/vscode/devcontainers/base:0-alpine-3.13",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/sh"
+  },
+  "extensions": [
+    "ms-python.python",
+    "ms-vscode.cpptools",
+    "ms-azuretools.vscode-docker"
+  ],
+  "postCreateCommand": "pip install -r requirements.txt && apk add --no-cache mysql mysql-client php php-mysqli docker",
+  "remoteUser": "vscode"
+}
