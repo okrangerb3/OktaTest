@@ -1,12 +1,18 @@
-FROM mcr.microsoft.com/devcontainers/php:1-8.2-bookworm
+FROM php:8.2-apache
 
-# Install MariaDB client
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get install -y mariadb-client \ 
-    && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y \
+    git \
+    zip \
+    unzip \
+    libzip-dev \
+    && docker-php-ext-install zip pdo pdo_mysql
 
-# Install php-mysql driver
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
+COPY php.ini /usr/local/etc/php/conf.d/php.ini
+
+WORKDIR /var/www/html
 
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \

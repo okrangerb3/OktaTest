@@ -1,10 +1,10 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/php-mariadb
 {
-	"name": "PHP & MariaDB",
+	"name": "PHP & MariaDB Development",
 	"dockerComposeFile": "docker-compose.yml",
-	"service": "app",
-	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"service": "php",
+	"workspaceFolder": "/var/www/html",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
@@ -12,7 +12,8 @@
 	// For use with PHP or Apache (e.g.php -S localhost:8080 or apache2ctl start)
 	"forwardPorts": [
 		8080,
-		3306
+		3306,
+		9003
 	],
 	"features": {
 		"ghcr.io/cirolosapio/devcontainers-features/alpine-php-mariadb:0": {},
@@ -28,8 +29,12 @@
 				"php.validate.executablePath": "/usr/bin/php"
 			},
 			"extensions": [
-				"ikappas.composer"
+				"ikappas.composer",
+				"xdebug.php-debug",
+				"bmewburn.vscode-intelephense-client",
+				"mikestead.dotenv"
 			]
 		}
-	}
+	},
+	"postCreateCommand": "composer install"
 }
