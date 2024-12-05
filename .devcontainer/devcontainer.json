@@ -14,8 +14,5 @@
 		}
 	},
 	"remoteUser": "vscode",
-	"forwardPorts": [
-		80,
-		 9004  // Changed port to 9004
-	]
+	"forwardPorts": [80, 9004]  // Changed port to 9004
 }
