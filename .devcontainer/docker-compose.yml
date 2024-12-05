@@ -34,7 +34,8 @@ services:
       - ..:/workspace:cached
     ports:
       - "80:80"
-      - "9003:9003"
+      - "9004:9003"
+      # Changed host port to 9004
     user: vscode
     command: sleep infinity
 
