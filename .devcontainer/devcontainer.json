@@ -5,17 +5,7 @@
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/workspace",
-
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-
-	// For use with PHP or Apache (e.g.php -S localhost:8080 or apache2ctl start)
-	"forwardPorts": [
-		80,
-		9003
-	],
 	"customizations": {
-		// Configure properties specific to VS Code.
 		"vscode": {
 			"extensions": [
 				"xdebug.php-debug",
@@ -24,5 +14,8 @@
 		}
 	},
 	"remoteUser": "vscode",
-	"postCreateCommand": "composer install"
+	"forwardPorts": [
+		80,
+		9003
+	]
 }

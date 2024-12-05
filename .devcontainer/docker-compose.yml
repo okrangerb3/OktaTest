@@ -26,5 +26,17 @@ services:
     ports:
       - "3306:3306"
 
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspace:cached
+    ports:
+      - "80:80"
+      - "9003:9003"
+    user: vscode
+    command: sleep infinity
+
 volumes:
   mariadb-data:

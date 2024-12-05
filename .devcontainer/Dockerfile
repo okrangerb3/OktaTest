@@ -1,24 +1,15 @@
-FROM php:8.2-apache
+ARG VARIANT="16"
+FROM mcr.microsoft.com/devcontainers/php:0-8.2
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    zip \
-    unzip \
-    libzip-dev \
-    libmariadb-dev \
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends \
+        git \
+        mariadb-client \
+        vim \
+    && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
-RUN docker-php-ext-install \
-    pdo_mysql \
-    mysqli \
-    zip
-
-# Install Xdebug
-RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug
+RUN docker-php-ext-install pdo pdo_mysql
 
 # Apache configuration
 RUN a2enmod rewrite
@@ -27,5 +18,7 @@ RUN a2enmod rewrite
 WORKDIR /var/www/html
 
 # Copy PHP configuration
-COPY php.ini /usr/local/etc/php/conf.d/php-custom.ini
+COPY php.ini /usr/local/etc/php/conf.d/dev.ini
+COPY ./script-in-your-repo.sh /tmp/scripts/script-in-codespace.sh
+RUN apt-get update && bash /tmp/scripts/script-in-codespace.sh
 
