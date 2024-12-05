@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -y \
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug
 
-COPY php.ini /usr/local/etc/php/conf.d/php.ini
+# Copy php.ini from the same directory as Dockerfile
+COPY ./php.ini /usr/local/etc/php/conf.d/custom.ini
 
 WORKDIR /var/www/html
 
