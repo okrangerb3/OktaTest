@@ -9,7 +9,7 @@ services:
     volumes:
       - ../:/var/www/html
     ports:
-      - "8080:80"
+      - "80:80"
       - "9003:9003"
     depends_on:
       - db
@@ -21,7 +21,7 @@ services:
     volumes:
       - mariadb-data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: rootpass
       MYSQL_DATABASE: app
     ports:
       - "3306:3306"
