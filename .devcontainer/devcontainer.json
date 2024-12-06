@@ -1,21 +1,23 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/php-mariadb
 {
-	"name": "PHP Dev Environment",
-	"build": {
-		"dockerfile": "Dockerfile",
-		"args": { 
-	"dockerComposeFile": "docker-compose.yml",
-	"service": "app",
-	"workspaceFolder": "/workspace",
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"xdebug.php-debug",
-				"bmewburn.vscode-intelephense-client"
-			]
-		}
-	},
-	"remoteUser": "vscode",
-	"forwardPorts": [80, 9004]  // Changed port to 9004
+    "name": "PHP Dev Environment",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": { 
+            "dockerComposeFile": "docker-compose.yml",
+            "service": "app",
+            "workspaceFolder": "/workspace"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "xdebug.php-debug",
+                "bmewburn.vscode-intelephense-client"
+            ]
+        }
+    },
+    "remoteUser": "vscode",
+    "forwardPorts": [80, 9004]  // Changed port to 9004
 }
